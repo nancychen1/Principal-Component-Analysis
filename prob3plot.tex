@@ -1,0 +1,43 @@
+\input pictex \nopagenumbers \magnification=\magstep1
+\pagewidth{6.5truein}\pageheight{9truein}
+\ceterline{\beginpicture
+\setcordinatesystem units<3 truein, 3truein>
+\setplotarea x from 0 to 2, y from 0 to .35
+\setsolid\setplotsymbol ({$\cdot$})
+\axis bottom 
+ticks numbered from 0 to 2 by by .1
+/
+\axis left
+ticks numbered from 0 to .35 by .01
+/
+\multiput{$\cdot$} at "Prob3.txt"
+\endpicture}\vfill\eject
+\end
+
+\documentclass{article}
+
+\usepackage{pgfplots}
+\usepackage{tikz}
+\begin{document}
+\begin{tikzpicture}
+    \begin{axis}[
+        xlabel={Beta},
+        ylabel={Q_i (i-th component in first eigenvector)},
+        xmin=0, xmax=2,
+        ymin=0, ymax=0.35,
+        xtick={0,.2,.4,.6,.8,1.0,1.2,1.4,1.6,1.8,2.0},
+        ytick={0, .05,.10,.15,.20,.25,.30,.35},
+        legend pos=north west,
+        ymajorgrids=true,
+        grid style=dashed,
+    ]
+    \addplot[
+    color=blue,
+    mark=circle,
+    ]
+    table[x=beta, y = q_i]
+    {Prob3.txt};
+    
+\end{axis}
+\end{tikzpicture}
+\end{document}
